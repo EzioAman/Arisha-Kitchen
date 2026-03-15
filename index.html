@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Arisha Kitchen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #c9a24d;
+      --dark: #0e0e0e;
+      --light: #f5f5f5;
+      --border: rgba(255,255,255,0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      scroll-behavior: smooth;
+    }
+
+    /* ================= HERO ================= */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 110%;
+      min-height: 110%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      filter: brightness(0.55);
+      animation: slowZoom 20s ease-in-out infinite;
+    }
+
+    @keyframes slowZoom {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.08); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.25),
+        rgba(0,0,0,0.85)
+      );
+    }
+
+    /* ================= NAV ================= */
+    nav {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 5;
+    }
+
+    nav h2 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--light);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
+
+    /* ================= HERO CONTENT ================= */
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: fadeUp 1.6s ease forwards;
+    }
+
+    .hero-content h1 span {
+      color: var(--gold);
+      text-shadow: 0 0 25px rgba(201,162,77,0.35);
+    }
+
+    .hero-content p {
+      max-width: 700px;
+      font-size: 1.1rem;
+      opacity: 0;
+      animation: fadeUp 1.6s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 14px 32px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 2px;
+      transition: 0.3s ease;
+      opacity: 0;
+      animation: fadeUp 1.6s ease forwards;
+      animation-delay: 1.2s;
+    }
+
+    .btn:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ================= SECTIONS ================= */
+    section {
+      padding: 100px 10%;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .section-title span {
+      color: var(--gold);
+    }
+
+    /* ================= MENU ================= */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .menu-item {
+      border: 1px solid var(--border);
+      padding: 22px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+
+    .menu-item:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    /* ================= GALLERY ================= */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      filter: brightness(0.85);
+      transition: 0.4s;
+    }
+
+    .gallery img:hover {
+      filter: brightness(1);
+      transform: scale(1.03);
+    }
+
+    /* ================= MAP ================= */
+    .map-container {
+      margin-top: 40px;
+      border: 1px solid var(--border);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 380px;
+      border: 0;
+      filter: grayscale(90%) invert(92%);
+    }
+
+    .map-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 26px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: 0.3s;
+    }
+
+    .map-btn:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    footer {
+      padding: 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      opacity: 0.6;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <video autoplay muted loop playsinline>
+    <source src="assets/restaurant.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <nav>
+    <h2>ARISHA</h2>
+    <ul>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#menu">MENU</a></li>
+      <li><a href="#gallery">GALLERY</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-content">
+    <h1>Arisha <span>Kitchen</span></h1>
+    <p>Authentic North Indian & Mughlai flavors in the heart of South Delhi.</p>
+    <a href="#contact" class="btn">FIND US</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">About <span>Us</span></h2>
+  <p style="max-width:800px; opacity:0.85; line-height:1.9">
+    Arisha Kitchen is a local favorite in Katwaria Sarai, New Delhi, known for
+    rich gravies, aromatic spices, and comforting North Indian meals.
+  </p>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <h2 class="section-title">Our <span>Menu</span></h2>
+  <div class="menu-grid">
+    <div class="menu-item">Shahi Paneer</div>
+    <div class="menu-item">Matar Paneer</div>
+    <div class="menu-item">Paneer Tikka</div>
+    <div class="menu-item">Chicken Handi</div>
+    <div class="menu-item">Mutton Handi</div>
+    <div class="menu-item">Biryani</div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <h2 class="section-title">Photo <span>Gallery</span></h2>
+  <div class="gallery">
+    <img src="assets/gallery/img1.jpeg">
+    <img src="assets/gallery/img2.jpeg">
+    <img src="assets/gallery/img3.jpeg">
+    <img src="assets/gallery/img4.jpeg">
+  </div>
+</section>
+
+<!-- CONTACT + MAP -->
+<section id="contact">
+  <h2 class="section-title">Visit <span>Us</span></h2>
+
+  <p style="opacity:0.85; line-height:1.8">
+    📍 <strong>Shop No. 2, 124A/1, Katwaria Sarai,<br>
+    New Delhi – 110016</strong>
+  </p>
+
+  <div class="map-container">
+    <iframe
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=Arisha+Kitchen+Katwaria+Sarai&output=embed">
+    </iframe>
+  </div>
+
+  <a class="map-btn" target="_blank" href="https://maps.app.goo.gl/Vp6fcu3wgXNHNdgTA">
+    OPEN IN GOOGLE MAPS
+  </a>
+</section>
+
+<footer>
+  © 2026 Arisha Kitchen • Katwaria Sarai, New Delhi
+</footer>
+
+</body>
+</html>
